@@ -92,7 +92,7 @@ const update = (req, res, next) => {
 
 const destroy = (req, res, next) => {
   let StudentID = req.body.id;
-  Student.findByIdAndRemove(StudentID)
+  Student.find({ id: StudentID }, { new: true })
     .then(() => {
       res.json({
         message: "Data succefully deleted!",

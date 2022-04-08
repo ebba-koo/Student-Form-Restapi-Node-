@@ -4,9 +4,11 @@ const studentschema = Schema(
   {
     id: {
       type: String,
+      required: true,
     },
     fullname: {
       type: String,
+      required: true,
     },
     department: {
       type: String,
