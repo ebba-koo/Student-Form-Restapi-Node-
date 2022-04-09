@@ -16,6 +16,8 @@ const db = mongoose.connection
   });
 
 const app = express();
+app.set("view engine", "ejs");
+
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -23,5 +25,7 @@ const PORT = process.env.PORT || 4700;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
+app.use("/", (req, res, next) => {
+  res.render("index");
+});
 app.use("/api/student", StudentRoute);
