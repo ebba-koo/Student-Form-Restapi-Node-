@@ -68,7 +68,7 @@ const create = (req, res, next) => {
     });
 };
 
-//update employee data
+//update student data
 const update = (req, res, next) => {
   let studentId = req.body.id;
   let updatedData = {
@@ -100,8 +100,8 @@ const update = (req, res, next) => {
 };
 
 const remove = (req, res, next) => {
-  let StudentID = req.body.id;
-  Student.find({ id: StudentID }, { new: true })
+  let StudentID = req.params.id;
+  Student.findOneAndDelete({ id: StudentID }, { new: true })
     .then(() => {
       res.json({
         message: "Data succefully deleted!",

@@ -4,7 +4,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const StudentRoute = require("./routers/student");
 
-mongoose.connect("mongodb://localhost/studentForm");
+mongoose.connect(
+  "mongodb+srv://hightech:hightech@cluster0.jjtln.mongodb.net/hightechstudentform?retryWrites=true&w=majority"
+);
 const db = mongoose.connection
   .once("open", function () {
     console.log("Connnection has been made");
@@ -17,7 +19,7 @@ const app = express();
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-const PORT = process.env.PORT || 4600;
+const PORT = process.env.PORT || 4700;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
