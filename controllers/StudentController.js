@@ -11,15 +11,15 @@ const index = (req, res, next) => {
     })
     .catch((error) => {
       req.json({
-        message: "An error Occured",
+        message: "An error Occured: ",
       });
     });
 };
 
 //search by id
 const show = (req, res, next) => {
-  let studentId = req.body.id;
-  Student.find({ id: studentId })
+  let studentId = req.params.id;
+  Student.findOne({ id: studentId })
     .then((response) => {
       res.json({
         data: response,
@@ -33,7 +33,7 @@ const show = (req, res, next) => {
 };
 
 //store student data
-const store = (req, res, next) => {
+const create = (req, res, next) => {
   let student = new Student({
     id: req.body.id,
     fullname: req.body.fullname,
@@ -52,9 +52,18 @@ const store = (req, res, next) => {
         message: "Data succefully added!",
       });
     })
+
     .catch((error) => {
-      res.json({
-        message: "An error occured",
+      let errs = Object.keys(error.errors);
+      return res.json({
+        message:
+          "invalid " +
+          errs
+            .map(
+              (err) =>
+                error.errors[err].path + "[" + error.errors[err].value + "]"
+            )
+            .join(" , "),
       });
     });
 };
@@ -90,7 +99,7 @@ const update = (req, res, next) => {
     });
 };
 
-const destroy = (req, res, next) => {
+const remove = (req, res, next) => {
   let StudentID = req.body.id;
   Student.find({ id: StudentID }, { new: true })
     .then(() => {
@@ -108,7 +117,7 @@ const destroy = (req, res, next) => {
 module.exports = {
   index,
   show,
-  store,
+  create,
   update,
-  destroy,
+  remove,
 };

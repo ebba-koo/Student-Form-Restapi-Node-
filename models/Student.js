@@ -1,10 +1,12 @@
 const { Schema, model } = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const studentschema = Schema(
   {
     id: {
       type: String,
       required: true,
+      unique: [true, "fghjkl"],
     },
     fullname: {
       type: String,
@@ -35,5 +37,7 @@ const studentschema = Schema(
   },
   { timestamps: true }
 );
+
+studentschema.plugin(uniqueValidator);
 
 module.exports = model("Student", studentschema);
