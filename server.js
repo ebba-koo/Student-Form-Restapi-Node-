@@ -5,7 +5,9 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const StudentRoute = require("./routers/student");
 
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(
+  "mongodb+srv://hightech:hightech@cluster0.jjtln.mongodb.net/hightechstudentform?retryWrites=true&w=majority"
+);
 const db = mongoose.connection
   .once("open", function () {
     console.log("Connnection has been made");
