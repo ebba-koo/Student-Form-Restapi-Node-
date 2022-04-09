@@ -70,7 +70,7 @@ const create = (req, res, next) => {
 
 //update employee data
 const update = (req, res, next) => {
-  let StudentID = req.body.id;
+  let studentId = req.body.id;
   let updatedData = {
     id: req.body.id,
     fullname: req.body.fullname,
@@ -83,7 +83,7 @@ const update = (req, res, next) => {
   };
 
   Student.findOneAndUpdate(
-    { id: StudentID },
+    { id: studentId },
     { $set: updatedData },
     { new: true }
   )

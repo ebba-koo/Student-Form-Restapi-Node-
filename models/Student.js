@@ -6,7 +6,7 @@ const studentschema = Schema(
     id: {
       type: String,
       required: true,
-      unique: [true, "fghjkl"],
+      unique: [true],
     },
     fullname: {
       type: String,
