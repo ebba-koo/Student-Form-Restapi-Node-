@@ -1,12 +1,11 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const StudentRoute = require("./routers/student");
 
-mongoose.connect(
-  "mongodb+srv://hightech:hightech@cluster0.jjtln.mongodb.net/hightechstudentform?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection
   .once("open", function () {
     console.log("Connnection has been made");
@@ -16,12 +15,14 @@ const db = mongoose.connection
   });
 
 const app = express();
-app.set("view engine", "ejs");
 
+app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 const PORT = process.env.PORT || 4700;
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
