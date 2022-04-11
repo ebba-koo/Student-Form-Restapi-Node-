@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const StudentRoute = require("./routers/student");
+const Student = require("./models/Student");
 
 mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection
@@ -29,6 +30,11 @@ app.listen(PORT, () => {
 
 app.get("/", (req, res, next) => {
   res.render("index");
+});
+
+app.get("/students", async (req, res, next) => {
+  const students = await Student.find();
+  res.render("students", { students });
 });
 
 app.get("/success", (req, res, next) => {
