@@ -26,7 +26,13 @@ const PORT = process.env.PORT || 4700;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-app.use("/", (req, res, next) => {
+
+app.get("/", (req, res, next) => {
   res.render("index");
 });
+
+app.get("/success", (req, res, next) => {
+  res.render("success");
+});
+
 app.use("/api/student", StudentRoute);

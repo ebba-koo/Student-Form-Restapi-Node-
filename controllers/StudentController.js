@@ -43,28 +43,22 @@ const create = (req, res, next) => {
     stream: req.body.stream,
     background: req.body.background,
     description: req.body.description,
+    section: req.body.section,
+    phonenumber: req.body.phonenumber,
+    notifyme: req.body.notifyme,
   });
 
   student
     .save()
     .then((response) => {
-      res.json({
-        message: "Data succefully added!",
-      });
+      // res.json({
+      //   message: "Data succefully added!",
+      // });
+      res.redirect("/success");
     })
 
     .catch((error) => {
-      let errs = Object.keys(error.errors);
-      return res.json({
-        message:
-          "invalid " +
-          errs
-            .map(
-              (err) =>
-                error.errors[err].path + "[" + error.errors[err].value + "]"
-            )
-            .join(" , "),
-      });
+      res.redirect("/");
     });
 };
 
@@ -80,6 +74,9 @@ const update = (req, res, next) => {
     stream: req.body.stream,
     background: req.body.background,
     description: req.body.description,
+    section: req.body.section,
+    phonenumber: req.body.phonenumber,
+    notifyme: req.body.notifyme,
   };
 
   Student.findOneAndUpdate(

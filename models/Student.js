@@ -14,25 +14,34 @@ const studentschema = Schema(
     },
     department: {
       type: String,
-      enum: ["CS", "CE", "AF"],
+      enum: ["CS", "CE", "TVET"],
       default: "CS",
     },
     gender: {
       type: String,
       enum: ["M", "F"],
     },
+    section: {
+      type: Number,
+    },
+    phonenumber: {
+      type: Number,
+    },
     year: {
       type: String,
     },
     stream: {
       type: String,
-      enum: ["Website Development", "Mobile App Development"],
+      enum: ["Web Development", "App Development"],
     },
     background: {
       type: String,
     },
     description: {
       type: String,
+    },
+    notifyme: {
+      type: Boolean,
     },
   },
   { timestamps: true }
