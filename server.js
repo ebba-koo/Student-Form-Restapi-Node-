@@ -42,3 +42,5 @@ app.get("/success", (req, res, next) => {
 });
 
 app.use("/api/student", StudentRoute);
+
+app.use(express.static("views"));
