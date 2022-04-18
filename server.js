@@ -34,7 +34,17 @@ app.get("/", (req, res, next) => {
 
 app.get("/students", async (req, res, next) => {
   const students = await Student.find();
-  res.render("students", { students });
+  let genderQuantity = {
+    male: 0,
+    female: 0,
+  };
+
+  students.map((std) => {
+    if (std.gender == "M") genderQuantity.male++;
+    else if (std.gender == "F") genderQuantity.female++;
+  });
+
+  res.render("students", { students, genderQuantity });
 });
 
 app.get("/success", (req, res, next) => {
