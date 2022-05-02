@@ -39,12 +39,38 @@ app.get("/students", async (req, res, next) => {
     female: 0,
   };
 
+  let Statics = {
+    Androidsecondyear: 0,
+    Androidthirdyear: 0,
+    Androidforthyear: 0,
+    Androidfifthyear: 0,
+
+    Websecondyear: 0,
+    Webthirdyear: 0,
+    Webforthyear: 0,
+    Webfifthyear: 0,
+  };
+
   students.map((std) => {
     if (std.gender == "M") genderQuantity.male++;
     else if (std.gender == "F") genderQuantity.female++;
   });
 
-  res.render("students", { students, genderQuantity });
+  students.map((std) => {
+    if (std.stream == "App Development") {
+      if (std.year.startsWith("2")) Statics.Androidsecondyear++;
+      else if (std.year.startsWith("3")) Statics.Androidthirdyear++;
+      else if (std.year.startsWith("4")) Statics.Androidforthyear++;
+      else if (std.year.startsWith("5")) Statics.Androidfifthyear++;
+    } else {
+      if (std.year.startsWith("2")) Statics.Websecondyear++;
+      else if (std.year.startsWith("3")) Statics.Webthirdyear++;
+      else if (std.year.startsWith("4")) Statics.Webforthyear++;
+      else if (std.year.startsWith("5")) Statics.Webfifthyear++;
+    }
+  });
+
+  res.render("students", { students, genderQuantity, Statics });
 });
 
 app.get("/success", (req, res, next) => {
