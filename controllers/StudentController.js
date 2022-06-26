@@ -40,6 +40,7 @@ const create = (req, res, next) => {
     department: req.body.department,
     gender: req.body.gender,
     year: req.body.year,
+    stream: "ce",
     background: req.body.background,
     description: req.body.description,
     section: req.body.section,
@@ -50,9 +51,6 @@ const create = (req, res, next) => {
   student
     .save()
     .then((response) => {
-      // res.json({
-      //   message: "Data succefully added!",
-      // });
       res.redirect("/success");
     })
 

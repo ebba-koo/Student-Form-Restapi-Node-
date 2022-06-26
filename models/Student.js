@@ -32,8 +32,7 @@ const studentschema = Schema(
     },
     stream: {
       type: String,
-      enum: ["Web Development", "App Development"],
-      default: "any",
+      enum: ["Web Development", "App Development", "ce"],
     },
     background: {
       type: String,
