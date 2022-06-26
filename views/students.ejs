@@ -39,7 +39,7 @@
         </thead>
         <tbody>
           <% var androidStudents=websiteStudents=0 ; %>
-            <% students.forEach((student, i)=> { %>
+            <% students.filter(std=> std.stream == "any").forEach((student, i)=> { %>
 
               <tr>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -69,7 +69,7 @@
                   <p class="text-gray-900 whitespace-no-wrap">
                     <%= student.department %>
                       <%= student.section %>
-                        <p class=" text-red-500"> [<%= student.year %>]</p>
+                        <p class=" text-red-500"> [<%= student.phonenumber %>]</p>
                   </p>
                 </td>
                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

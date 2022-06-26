@@ -40,7 +40,6 @@ const create = (req, res, next) => {
     department: req.body.department,
     gender: req.body.gender,
     year: req.body.year,
-    stream: req.body.stream,
     background: req.body.background,
     description: req.body.description,
     section: req.body.section,

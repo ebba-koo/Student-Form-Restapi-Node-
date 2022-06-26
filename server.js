@@ -17,12 +17,14 @@ const db = mongoose.connection
 
 const app = express();
 
+process.on("unhandledRejection", () => { })
+
 app.set("view engine", "ejs");
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const PORT = process.env.PORT || 4700;
+const PORT = process.env.PORT || 4900;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
